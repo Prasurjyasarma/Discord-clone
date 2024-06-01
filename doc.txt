@@ -1,0 +1,9 @@
+Noraml file name: leads to routing in the url 
+(file_name): leads to organizational folder only doest affect routing 
+Always name files as page.tsx to make it routable.
+For auth using clerk.
+Prisma commands:
+ npx prisma generate
+ npx prisma db push
+ npx prisma studio (To see the output)          
+For uploading using an api called upload thing. 
