@@ -38,11 +38,20 @@ import {
 import { MemberRole } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { ActionTooltip } from "../action-tooltip";
 
 const roleIconMap = {
   GUEST: null,
-  MODERATOR: <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />,
-  ADMIN: <ShieldAlert className="h-4 w-4 text-rose-500" />,
+  MODERATOR: (
+    <ActionTooltip side="top" align="center" label="Moderator">
+      <ShieldCheck className="h-4 w-4 ml-2 text-indigo-500" />
+    </ActionTooltip>
+  ),
+  ADMIN: (
+    <ActionTooltip side="top" align="center" label="Admin">
+      <ShieldAlert className="h-4 w-4 text-rose-500" />
+    </ActionTooltip>
+  ),
 };
 
 export const MembersModal = () => {
@@ -111,7 +120,7 @@ export const MembersModal = () => {
                   {member.profile.name}
                   {roleIconMap[member.role]}
                 </div>
-                <p className="text-xs text-zinc-500">{member.profile.email}</p>
+                <p className="text-xs text-zinc-500 ">{member.profile.email}</p>
               </div>
               {server.profileId !== member.profileId &&
                 loadingId !== member.id && (
@@ -127,14 +136,14 @@ export const MembersModal = () => {
                             <span>Role</span>
                           </DropdownMenuSubTrigger>
                           <DropdownMenuPortal>
-                            <DropdownMenuSubContent>
+                            <DropdownMenuSubContent className="ml-1">
                               <DropdownMenuItem
                                 onClick={() => onRoleChange(member.id, "GUEST")}
                               >
                                 <Shield className="h-4 w-4 mr-2" />
                                 Guest
                                 {member.role === "GUEST" && (
-                                  <Check className="h-4 w-4 ml-auto" />
+                                  <Check className="h-4 w-4 ml-2" />
                                 )}
                               </DropdownMenuItem>
                               <DropdownMenuItem
@@ -142,10 +151,10 @@ export const MembersModal = () => {
                                   onRoleChange(member.id, "MODERATOR")
                                 }
                               >
-                                <ShieldCheck className="h-4 w-4 mr-2" />
+                                <ShieldCheck className="h-4 w-4 mr-2 " />
                                 Moderator
                                 {member.role === "MODERATOR" && (
-                                  <Check className="h-4 w-4 ml-auto" />
+                                  <Check className="h-4 w-4 ml-2" />
                                 )}
                               </DropdownMenuItem>
                             </DropdownMenuSubContent>
@@ -153,7 +162,7 @@ export const MembersModal = () => {
                         </DropdownMenuSub>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={() => onKick(member.id)}>
-                          <Gavel className="h-4 w-4 mr-2" />
+                          <Gavel className="h-4 w-4 mr-2 text-rose-700" />
                           Kick
                         </DropdownMenuItem>
                       </DropdownMenuContent>
