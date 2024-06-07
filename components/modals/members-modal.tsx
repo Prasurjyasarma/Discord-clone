@@ -131,13 +131,14 @@ export const MembersModal = () => {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent side="left">
                         <DropdownMenuSub>
-                          <DropdownMenuSubTrigger className="flex items-center">
+                          <DropdownMenuSubTrigger className="flex items-center cursor-pointer">
                             <ShieldQuestion className="w-4 h-4 mr-2" />
                             <span>Role</span>
                           </DropdownMenuSubTrigger>
                           <DropdownMenuPortal>
                             <DropdownMenuSubContent className="ml-1">
                               <DropdownMenuItem
+                                className="cursor-pointer"
                                 onClick={() => onRoleChange(member.id, "GUEST")}
                               >
                                 <Shield className="h-4 w-4 mr-2" />
@@ -147,6 +148,7 @@ export const MembersModal = () => {
                                 )}
                               </DropdownMenuItem>
                               <DropdownMenuItem
+                                className="cursor-pointer"
                                 onClick={() =>
                                   onRoleChange(member.id, "MODERATOR")
                                 }
@@ -161,7 +163,10 @@ export const MembersModal = () => {
                           </DropdownMenuPortal>
                         </DropdownMenuSub>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => onKick(member.id)}>
+                        <DropdownMenuItem
+                          className="cursor-pointer"
+                          onClick={() => onKick(member.id)}
+                        >
                           <Gavel className="h-4 w-4 mr-2 text-rose-700" />
                           Kick
                         </DropdownMenuItem>
